@@ -69,6 +69,7 @@ python /mydata/model/Kmeans/MiniBathKMeans.py
 
 ## 4 可视化展示
 本文可视化展示涉及所有内容所在的路径为下图所示：
+
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/17613779-f7ab-4533-9e7d-968c0f94f00b)
 
 - `css`：样式文件目录。
@@ -78,6 +79,7 @@ python /mydata/model/Kmeans/MiniBathKMeans.py
 - `index.html`：可视化页面展示入口，使用本地浏览器打开`index.html`即可访问。
 - `img`：本地图片目录，地图标注的记号图片。
 - `js`：页面展示涉及的JavaScript脚本，其下的`GeoUtils.js`文件包含了停车点路径推荐，范围内是否存在停车点等重要算法。注释完备自行研究即可：
+
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/a7593a27-4692-4fd5-a30c-49f4203b6877)
 
 ### 4.1 修改周几的数据来源
