@@ -36,7 +36,7 @@ python /mydata/datacleaning/data_cleaning.py ../data/input/ ../data/output/shenz
 
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/973e112f-fc62-484f-84f2-16e667e4b149)
 
-**得到输出文件默认直接保存在`/devide_time.py`目录下，有需要请自行添加相关目录更该操作。
+**得到的输出文件默认直接保存在当前`/devide_time.py`的同级目录下，有需要请自行添加相关目录更该操作。**
 
 ## 3 聚类分析
 聚类使用了MiniBatchKMeans算法，默认聚类中心数量为300，聚类思想大致为：**分别对24个小时的各个时间段的停车点经纬度汇总文件进行聚类分析，最终分别得到24个小时各个时间段的300个聚类中心点**，脚本位置在于`/mydata/model/Kmeans/MiniBathKMeans.py`
@@ -66,5 +66,56 @@ python /mydata/model/Kmeans/MiniBathKMeans.py
 这种划分方式可以根据聚类点在整个数据集中的相对数量来确定其权重级别。例如，如果一个聚类点的数量相对较少，则被划分为权重0；而如果一个聚类点的数量相对较多，则被划分为权重4。这样可以在后续的分析或使用过程中，根据权重来考虑聚类点的重要性或影响力。若需修改权重分布则直接修改`MiniBathKMeans.py`的`weighing`方法即可，如下图：
 
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/02d32e5b-b9da-496a-82df-0f655ee6e169)
+
+## 4 可视化展示
+本文可视化展示内容所在路劲为下图：
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/17613779-f7ab-4533-9e7d-968c0f94f00b)
+
+- `css`：样式文件目录。
+- `data`：聚类中心点文件，创建目录合法格式为`week_{num}`，`num`值表示当前目录为周几的24小时各时间段聚类中心点文本。如下图：
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/88332b39-3292-4da0-8cef-8aff818450b0)
+
+- `index.html`：可视化页面展示入口，直接使用本地浏览器打开`index.html`即可。
+- `img`：本地图片目录，地图标注的记号图片。
+- `js`：页面展示涉及的JavaScript脚本，其下的`GeoUtils.js`文件包含了停车点路径推荐，范围内是否存在停车点等重要算法。注释完备自行研究即可：
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/a7593a27-4692-4fd5-a30c-49f4203b6877)
+
+### 4.1 修改周几的数据来源
+在`index.html`中，直接修改如下标注处的`week`值表示选中后数据读取的是上面提及的的`data`目录下的`week_{week}`目录下的文件：
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/77108653-e77e-4a12-955e-d65ce17b05c2)
+
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/748e0f12-d81e-49d1-8d56-9dcbc28cfd28)
+
+原作者除周一外，剩余周几全部读取的是同一个`data/week_2`下的文件，若有修改需要则：
+1. 在datam目录下创建合法的week_{num}目录
+2. 将合法的聚类中心点文件复制到上目录下
+3. 修改上图`html`处的li标记处的`week`值
+### 4.2 修改初始地图显示的所在位置
+如下图，在`index.html`下的该行号位置处修改数值参数即可，此时设置地点为深圳某处经纬度。
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/335565f9-8865-4a94-abb3-cd6981e0d361)
+
+### 4.3 修改停车点检索范围的半径大小
+如下图，在`index.html`所示两个位置修改即可该表圆形半径，此时均为200
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/97045e34-f3e2-4201-a807-482fc6b9d2f4)
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/d5410ccf-2ce6-4f5b-abbe-e2ffbe82cee3)
+
+### 4.4 修改读取聚类中心点方法的逻辑
+如下图，在`index.html`所示位置方法即为原作者的相关逻辑
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/67e18c0e-84b7-4ba4-930f-cddbb1d75866)
+
+### 4.5 修改api
+原作者的百度api
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/8610d1cc-b3e6-4fd1-9d1a-526884187e21)
+
+## 5. 展示
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/a128aa51-1094-49ed-ab27-d490f0c1b7c1)
+
+![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/b7e3a662-c9bf-4c9f-ade7-22f82eea1bea)
+
+
+
+
+
+
 
 
