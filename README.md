@@ -29,7 +29,7 @@ python /mydata/datacleaning/data_cleaning.py ../data/input/ ../data/output/shenz
 清洗脚本默认在存在输出文件已经存在时直接进行追加。
 
 ## 2 数据处理
-数据处理目的为；**将清洗好的数据源文件按time进行分割，最终分别得到24个小时各个小时阶段的汇总停车经纬度点**。
+数据处理目的为；**将清洗好的数据源文件按time进行分割，最终分别得到24个小时各个小时阶段的停车经纬度点汇总**。
 
 脚本位于`/mydata/datacleaning/devide_time.py`,根据需求可修改处如下图：
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/6a65b917-c770-463e-b9ea-68a2f18deffc)
@@ -68,30 +68,32 @@ python /mydata/model/Kmeans/MiniBathKMeans.py
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/02d32e5b-b9da-496a-82df-0f655ee6e169)
 
 ## 4 可视化展示
-本文可视化展示内容所在路劲为下图：
+本文可视化展示涉及所有内容所在的路径为下图所示：
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/17613779-f7ab-4533-9e7d-968c0f94f00b)
 
 - `css`：样式文件目录。
 - `data`：聚类中心点文件，创建目录合法格式为`week_{num}`，`num`值表示当前目录为周几的24小时各时间段聚类中心点文本。如下图：
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/88332b39-3292-4da0-8cef-8aff818450b0)
 
-- `index.html`：可视化页面展示入口，直接使用本地浏览器打开`index.html`即可。
+- `index.html`：可视化页面展示入口，使用本地浏览器打开`index.html`即可访问。
 - `img`：本地图片目录，地图标注的记号图片。
 - `js`：页面展示涉及的JavaScript脚本，其下的`GeoUtils.js`文件包含了停车点路径推荐，范围内是否存在停车点等重要算法。注释完备自行研究即可：
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/a7593a27-4692-4fd5-a30c-49f4203b6877)
 
 ### 4.1 修改周几的数据来源
-在`index.html`中，直接修改如下标注处的`week`值表示选中后数据读取的是上面提及的的`data`目录下的`week_{week}`目录下的文件：
+在`index.html`中，直接修改标注处的 `week` 值，以指定数据读取的是上述提及的 `data` 目录下的 `week_{week}` 目录中的文件
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/77108653-e77e-4a12-955e-d65ce17b05c2)
 
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/748e0f12-d81e-49d1-8d56-9dcbc28cfd28)
 
-原作者除周一外，剩余周几全部读取的是同一个`data/week_2`下的文件，若有修改需要则：
+原页面周二至周日的数据读取均为`data/week_2`目录下的文件，**本文项目中仅周四数据有效，来源于深圳市交通数据集聚类结果**。
+
+修改数据来源方式如下：
 1. 在datam目录下创建合法的week_{num}目录
 2. 将合法的聚类中心点文件复制到上目录下
 3. 修改上图`html`处的li标记处的`week`值
 ### 4.2 修改初始地图显示的所在位置
-如下图，在`index.html`下的该行号位置处修改数值参数即可，此时设置地点为深圳某处经纬度。
+如下图，在`index.html`下的该行号位置处修改数值参数即可，本文项目设置地点为深圳某处经纬度。
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/335565f9-8865-4a94-abb3-cd6981e0d361)
 
 ### 4.3 修改停车点检索范围的半径大小
@@ -104,7 +106,7 @@ python /mydata/model/Kmeans/MiniBathKMeans.py
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/67e18c0e-84b7-4ba4-930f-cddbb1d75866)
 
 ### 4.5 修改api
-原作者的百度api
+本文项目延用原作者的百度api
 ![image](https://github.com/lve-sunshine/Dataanalysis/assets/99074010/8610d1cc-b3e6-4fd1-9d1a-526884187e21)
 
 ## 5. 展示
